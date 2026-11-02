@@ -1,0 +1,7 @@
+# 关键：容器构建在 Linux，任何 CRLF 都会让 entrypoint.sh 以 "#!/bin/sh\r" 启动失败
+* text=auto eol=lf
+*.sh text eol=lf
+Dockerfile text eol=lf
+Caddyfile text eol=lf
+*.zip binary
+*.png binary

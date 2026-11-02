@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: us-vless
+    runtime: docker
+    plan: free
+    region: oregon          # 美国西部 (US-West) 出口 IP
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_NAME
+        value: US-Oregon-VLESS
+      - key: UUID
+        generateValue: true
+      - key: WS_PATH
+        value: /ws-9f3a1c

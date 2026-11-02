@@ -1,0 +1,33 @@
+# fly.io — 真·美国出口 IP，长期在线，不走免费额度休眠限制
+# 用法：fly launch --copy-config --no-deploy  ->  fly deploy
+app = "us-vless-CHANGEME"
+primary_region = "sjc"          # sjc / lax / iad / ord 全部是美国
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8080"
+  INNER_PORT = "18080"
+  NODE_NAME = "US-SJC-VLESS"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"   # 省额度；常驻可改 false
+  auto_start_machines = true
+  min_machines_running = 1         # 保持 1 台常驻，避免冷启动
+  processes = ["app"]
+
+  [[http_service.checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "20s"
+    method = "GET"
+    path = "/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "256mb"

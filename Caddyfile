@@ -1,0 +1,17 @@
+{
+	auto_https off
+	admin off
+}
+
+http://localhost:8081 {
+	reverse_proxy 127.0.0.1:18080 {
+		flush_interval -1
+	}
+}
+
+https://localhost:8443 {
+	tls internal
+	reverse_proxy 127.0.0.1:18080 {
+		flush_interval -1
+	}
+}

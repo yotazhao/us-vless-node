@@ -1,0 +1,26 @@
+# --- 绝不入库：浏览器 profile / 自动化产物 / 密钥 ---
+.profile/
+browser/
+dist/
+out/
+out-edge/
+bin/
+.caddy/
+node_modules/
+__pycache__/
+
+# 日志与临时输出
+*.log
+*.err
+*.out
+*.pyc
+
+# 生成的身份与证书
+.env
+config.json
+state.json
+storage.json
+gh-user.json
+params.json
+edge-cert.pem
+edge-key.pem
